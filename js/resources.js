@@ -1,28 +1,8 @@
 game.resources = [
 
-    /* Graphics.
-     * @example
-     * {name: "example", type:"image", src: "data/img/example.png"},
-     */
-
-    /* Texture Atlases
-     * @example
-     * {name: "texture", type: "json", src: "data/img/example_tps.json"},
-     */
-
-    /* Maps.
-     * @example
-     * {name: "example01", type: "tmx", src: "data/map/example01.tmx"},
-     * {name: "example01", type: "tmx", src: "data/map/example01.json"},
-      */
-
-    /* Background music.
-     * @example
-     * {name: "example_bgm", type: "audio", src: "data/bgm/"},
-     */
-
-    /* Sound effects.
-     * @example
-     * {name: "example_sfx", type: "audio", src: "data/sfx/"}
-     */
+    {name: "arithmethic_level_tiles",   type:"image", src: "data/img/map/arithmethic_level_tiles.png"},
+    {name: "maja_right",                type:"image", src: "data/img/sprite/maja-small.png"},
+    {name: "hive",                      type:"image", src: "data/img/sprite/hive.png"},
+    {name: "32x32_font",                type:"image", src: "data/img/font/32x32_font.png"},
+    {name: "arithmethic_level",         type: "tmx", src: "data/map/arithmethic_level.tmx"}
 ];
