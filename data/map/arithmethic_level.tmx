@@ -40,7 +40,8 @@
   </object>
  </objectgroup>
  <objectgroup name="collision" width="20" height="15">
-  <object x="-23" y="363" width="740" height="54"/>
-  <object x="510" y="366" height="5"/>
+  <object x="633" y="284">
+   <polyline points="0,0 0,79 -630,82 -630,2 -680,3 -682,129 48,128 48,-3 -1,-2"/>
+  </object>
  </objectgroup>
 </map>

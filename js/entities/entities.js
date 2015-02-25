@@ -105,32 +105,47 @@ onCollision : function (response, other) {
 
     switch(game.data.arithmetic.order) {
         case "first":
-            game.data.arithmetic.firstNumber = this.arithmetic.value;
-            game.data.arithmetic.score = game.data.arithmetic.firstNumber;
-            game.data.arithmetic.order = "operation";
+          me.audio.play("blob");
+          game.data.arithmetic.firstNumber = this.arithmetic.value;
+          game.data.arithmetic.score = game.data.arithmetic.firstNumber;
+          game.data.arithmetic.order = "operation";
         break;
         case "operation":
-            if (this.arithmetic.value == "+" || this.arithmetic.value == "-") {
-                game.data.arithmetic.operation = this.arithmetic.value;
-                game.data.arithmetic.score += game.data.arithmetic.operation;
-                game.data.arithmetic.order = "second";
-            }
+          if (this.arithmetic.value == "+" || this.arithmetic.value == "-") {
+            me.audio.play("blob");
+            game.data.arithmetic.operation = this.arithmetic.value;
+            game.data.arithmetic.score += game.data.arithmetic.operation;
+            game.data.arithmetic.order = "second";
+          }
+          else {
+            me.audio.play("woosh");
+          }
         break;
         case "second":
-            if (this.arithmetic.value != "+" && this.arithmetic.value != "-") {
-                game.data.arithmetic.secondNumber = this.arithmetic.value;
-                game.data.arithmetic.order = "result";
-                game.data.arithmetic.score += game.data.arithmetic.secondNumber + "=";
-                if (game.data.arithmetic.operation == "+") {
-                    game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
-                }
-                else {
-                    game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber - game.data.arithmetic.secondNumber;
-                }
+          if (this.arithmetic.value != "+" && this.arithmetic.value != "-") {
+            me.audio.play("blob");
+            game.data.arithmetic.secondNumber = this.arithmetic.value;
+            game.data.arithmetic.order = "result";
+            game.data.arithmetic.score += game.data.arithmetic.secondNumber + "=";
+            if (game.data.arithmetic.operation == "+") {
+                game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
             }
+            else {
+                game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber - game.data.arithmetic.secondNumber;
+            }
+          }
+          else {
+            me.audio.play("woosh");
+          }
         break;
         case "result":
             game.data.arithmetic.result = this.arithmetic.value;
+            if (game.data.arithmetic.result == game.data.arithmetic.expectedResult) {
+              me.audio.play("applause");
+            }
+            else {
+              me.audio.play("fail");
+            }
             game.data.arithmetic.order = "first";
             game.data.arithmetic.score += game.data.arithmetic.result;
         break;
