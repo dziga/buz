@@ -112,7 +112,7 @@ game.HiveEntity = me.CollectableEntity.extend({
 update : function (dt) {
     this.body.vel.y += this.body.accel.y * me.timer.tick;
     if (this.pos.y > 450) {
-      this.pos.y = this.hiveRestartPosition();
+      this.pos.y = this.hiveRestartPositionY();
       this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
   }
   this.body.update(dt);
@@ -125,7 +125,7 @@ draw: function (renderer) {
 },
 
 onCollision : function (response, other) {
-    this.pos.y = this.hiveRestartPosition();
+    this.pos.y = this.hiveRestartPositionY();
     
     switch(game.data.arithmetic.order) {
         case "first":
@@ -166,7 +166,7 @@ onCollision : function (response, other) {
     return false;
 },
 
-hiveRestartPosition: function() {
+hiveRestartPositionY: function() {
     return (-40).random(-90);
 },
 
