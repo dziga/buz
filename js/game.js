@@ -4,11 +4,10 @@ var game = {
 
     // an object where to store game information
     data : {
-        // score
-        score : 0,
         arithmetic : {
             order : "first",
-            expectedResult : -1
+            expectedResult : -1,
+            score : 0
         }
     },
 

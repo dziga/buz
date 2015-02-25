@@ -9,10 +9,10 @@
      init:function (x, y, settings) {
         // call the constructor
         this._super(me.Entity, 'init', [x, y , settings]);
-        
+
         // set the default horizontal & vertical speed (accel vector)
         this.body.setVelocity(3, 15);
-        
+
         // ensure the player is updated even when outside of the viewport
         this.alwaysUpdate = true;
         this.arithmetic = [];
@@ -22,7 +22,7 @@
         this.arithmetic.isThirdNumber = false;
         this.arithmetic.order = "first";
         this.pos.mouse = -1;
-        
+
         // define a basic walking animation (using all frames)
         // this.renderable.addAnimation("walk",  [0, 1, 2, 3, 4, 5, 6, 7]);
         // define a standing animation (using the first frame)
@@ -73,7 +73,7 @@
         // else {
         //     this.body.vel.x = 0;
         // }
-        
+
         // apply physics to the body (this moves the entity)
         this.body.update(dt);
 
@@ -129,32 +129,37 @@ onCollision : function (response, other) {
     
     switch(game.data.arithmetic.order) {
         case "first":
-        game.data.arithmetic.firstNumber = this.arithmetic.value;
-        game.data.arithmetic.order = "operation";
+            game.data.arithmetic.firstNumber = this.arithmetic.value;
+            game.data.arithmetic.score = game.data.arithmetic.firstNumber;
+            game.data.arithmetic.order = "operation";
         break;
         case "operation":
-        if (this.arithmetic.value == "+" || this.arithmetic.value == "-") {
-            game.data.arithmetic.operation = this.arithmetic.value;
-            game.data.arithmetic.order = "second";
-        }
+            if (this.arithmetic.value == "+" || this.arithmetic.value == "-") {
+                game.data.arithmetic.operation = this.arithmetic.value;
+                game.data.arithmetic.score += game.data.arithmetic.operation;
+                game.data.arithmetic.order = "second";
+            }
         break;
         case "second":
-        if (this.arithmetic.value != "+" && this.arithmetic.value != "-") {
-            game.data.arithmetic.secondNumber = this.arithmetic.value;
-            game.data.arithmetic.order = "result";
-            game.data.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
-        }
+            if (this.arithmetic.value != "+" && this.arithmetic.value != "-") {
+                game.data.arithmetic.secondNumber = this.arithmetic.value;
+                game.data.arithmetic.order = "result";
+                game.data.arithmetic.score += game.data.arithmetic.secondNumber + "=";
+                if (game.data.arithmetic.operation == "+") {
+                    game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
+                }
+                else {
+                    game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber - game.data.arithmetic.secondNumber;
+                }
+            }
         break;
         case "result":
-        game.data.arithmetic.result = this.arithmetic.value;
-        console.log(game.data.arithmetic.firstNumber 
-            + game.data.arithmetic.operation + game.data.arithmetic.secondNumber + "=" 
-            + game.data.arithmetic.result);
-        console.log(game.data.arithmetic.result == game.data.expectedResult);
-        game.data.arithmetic.order = "first";
+            game.data.arithmetic.result = this.arithmetic.value;
+            game.data.arithmetic.order = "first";
+            game.data.arithmetic.score += game.data.arithmetic.result;
         break;
         default: 
-        game.data.arithmetic.order = "first";
+            game.data.arithmetic.order = "first";
     }
 
     this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
@@ -172,6 +177,15 @@ getArithmeticValue: function(order, expectedResult) {
         } else {
             return "-";
         }
+    }
+    else if (order == "second" && game.data.arithmetic.operation == "-") {
+        return (1).random(game.data.arithmetic.firstNumber);
+    }
+    else if (order == "result") {
+        if (((1).random(4) % 3) == 0 ) {
+            return game.data.arithmetic.expectedResult;
+        }
+
     }
     return (1).random(20);
 }
