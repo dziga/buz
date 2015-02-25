@@ -1,6 +1,8 @@
 Buzz - game for kids
 -------------------------------------------------------------------------------
 
+Running instance https://buz.5apps.com/
+
 ## Android version
 
 Coming soon
