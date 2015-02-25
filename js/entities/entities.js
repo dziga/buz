@@ -6,7 +6,7 @@
         this._super(me.Entity, 'init', [x, y , settings]);
 
         // set the default horizontal & vertical speed (accel vector)
-        this.body.setVelocity(3, 15);
+        this.body.setVelocity(3, 0);
 
         // ensure the player is updated even when outside of the viewport
         this.alwaysUpdate = true;
@@ -45,16 +45,16 @@
             // }
         } else if (me.input.isKeyPressed('click')) {
           this.pos.mouse = Math.round(me.input.mouse.pos.x, 0);
-          if ((this.pos.mouse - this.pos.x) > 0) {
-              this.renderable.flipX(false);
-              this.body.vel.x += this.body.accel.x * me.timer.tick;
-          } else {
+          if ((this.pos.mouse - this.pos.x) < 0) {
               this.renderable.flipX(true);
               this.body.vel.x -= this.body.accel.x * me.timer.tick;
+          } else {
+              this.renderable.flipX(false);
+              this.body.vel.x += this.body.accel.x * me.timer.tick;
           }
         } else if ((this.pos.mouse - this.pos.x) > -2 && 2 > (this.pos.mouse - this.pos.x)) {
-              this.body.vel.x = 0;
-              this.pos.mouse = -1;
+            this.body.vel.x = 0;
+            this.pos.mouse = -1;
         } else if (this.pos.mouse == -1) {
             this.body.vel.x = 0;
         }
@@ -64,7 +64,7 @@
         me.collision.check(this);
 
         // return true if we moved or if the renderable was updated
-        return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0 || this.body.vel.y !== 0 || me.input.mouse.pos.x != this.pos.x);
+        return (this._super(me.Entity, 'update', [dt]) || this.body.vel.x !== 0);
     },
 
      onCollision : function (response, other) {

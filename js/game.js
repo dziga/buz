@@ -51,7 +51,7 @@ var game = {
 
         me.input.bindKey(me.input.KEY.LEFT,  "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
-        me.input.bindKey(me.input.KEY.U, "click");
+        me.input.bindKey(me.input.KEY.U, "click", true, true);
         me.input.bindPointer(me.input.KEY.U);
         // Start the game.
         me.state.change(me.state.PLAY);
