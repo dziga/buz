@@ -12,6 +12,12 @@ game.PlayScreen = me.ScreenObject.extend({
         // add our HUD to the game world
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
+
+        this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
+          if (action === "pause") {
+              me.state.isPaused()? me.state.resume(true) : me.state.pause(true);
+          }
+        });
     },
 
     /**
