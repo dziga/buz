@@ -86,8 +86,8 @@ game.HiveEntity = me.CollectableEntity.extend({
 },
 
 update : function (dt) {
-    this.body.vel.y += this.body.accel.y * me.timer.tick;
-    if (this.pos.y > 450) {
+  this.body.vel.y += this.body.accel.y * me.timer.tick;
+  if (this.pos.y > me.game.world.height) {
       this.pos.y = this.hiveRestartPositionY();
       this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
   }
