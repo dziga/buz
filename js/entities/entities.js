@@ -81,7 +81,7 @@ game.HiveEntity = me.CollectableEntity.extend({
     this.body.setVelocity(1, 1);
     this.alwaysUpdate = true;
     this.arithmetic = [];
-    this.arithmetic.value = (5).random(10);
+    this.arithmetic.value = (1).random(11);
     this.font = new me.BitmapFont("32x32_font", 32);
 },
 
