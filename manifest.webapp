@@ -1,5 +1,5 @@
 {
-    "name": "boilerplate",
+    "name": "buz",
     "launch_path" : "./index.html",
     "version": "1",
     "icons": {
@@ -8,10 +8,6 @@
         "120": "/icons/touch-icon-iphone-retina-120x120",
         "128": "/icons/touch-icon-marketplace-128x128",
         "152": "/icons/touch-icon-ipad-retina-152x152"
-    },
-    "developer": {
-        "name": "melonjs",
-        "url": "http://www.melonjs.org"
     },
     "fullscreen": true
 }
