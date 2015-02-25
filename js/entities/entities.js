@@ -20,6 +20,7 @@ game.PlayerEntity = me.Entity.extend({
         this.arithmetic.isFirstNumber = true;
         this.arithmetic.isSecondNumber = false;
         this.arithmetic.isThirdNumber = false;
+        this.arithmetic.order = "first";
         this.pos.mouse = -1;
          
         // define a basic walking animation (using all frames)
@@ -111,8 +112,8 @@ game.HiveEntity = me.CollectableEntity.extend({
   update : function (dt) {
     this.body.vel.y += this.body.accel.y * me.timer.tick;
     if (this.pos.y > 450) {
-      this.pos.y = 0;
-      this.arithmetic.value = (1).random(20);
+      this.pos.y = this.hiveRestartPosition();
+      this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
     }
     this.body.update(dt);
     return this._super(me.Entity, 'update', [dt]);
@@ -124,24 +125,54 @@ game.HiveEntity = me.CollectableEntity.extend({
   },
  
   onCollision : function (response, other) {
-    this.pos.y = -20;
+    this.pos.y = this.hiveRestartPosition();
     
-    if (other.arithmetic.isFirstNumber) {
-      other.arithmetic.firstNumber = this.arithmetic.value;
-      other.arithmetic.isFirstNumber = false;
-      other.arithmetic.isSecondNumber = true;
-    }
-    else if (other.arithmetic.isSecondNumber){
-      other.arithmetic.secondNumber = this.arithmetic.value;
-      other.arithmetic.isSecondNumber = false;
-    }
-    else if (!other.arithmetic.isSecondNumber && !other.arithmetic.isFirstNumber) {
-      other.arithmetic.result = other.arithmetic.firstNumber + other.arithmetic.secondNumber;
-      console.log(other.arithmetic.firstNumber + " + " + other.arithmetic.secondNumber + " = " + other.arithmetic.result);
-      other.arithmetic.isFirstNumber = true;
+    switch(game.data.arithmetic.order) {
+    case "first":
+        game.data.arithmetic.firstNumber = this.arithmetic.value;
+        game.data.arithmetic.order = "operation";
+        break;
+    case "operation":
+        if (this.arithmetic.value == "+" || this.arithmetic.value == "-") {
+            game.data.arithmetic.operation = this.arithmetic.value;
+            game.data.arithmetic.order = "second";
+        }
+        break;
+    case "second":
+        if (this.arithmetic.value != "+" && this.arithmetic.value != "-") {
+            game.data.arithmetic.secondNumber = this.arithmetic.value;
+            game.data.arithmetic.order = "result";
+            game.data.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
+        }
+        break;
+    case "result":
+        game.data.arithmetic.result = this.arithmetic.value;
+    console.log(game.data.arithmetic.firstNumber 
+    + game.data.arithmetic.operation + game.data.arithmetic.secondNumber + "=" 
+    + game.data.arithmetic.result);
+    console.log(game.data.arithmetic.result == game.data.expectedResult);
+        game.data.arithmetic.order = "first";
+        break;
+    default: 
+        game.data.arithmetic.order = "first";
     }
 
-    this.arithmetic.value = (5).random(10);
+    this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
     return false;
+  },
+
+  hiveRestartPosition: function() {
+    return (-40).random(-90);
+  },
+
+  getArithmeticValue: function(order, expectedResult) {
+    if (order == "operation") {
+        if (((2).random(4) % 2) == 0) {
+            return "+";
+        } else {
+            return "-";
+        }
+    }
+    return (1).random(20);
   }
 });
