@@ -143,7 +143,7 @@ onCollision : function (response, other) {
 },
 
 hiveRestartPositionY: function() {
-    return (-40).random(-90);
+    return (-20).random(-100);
 },
 
 getArithmeticValue: function(order, expectedResult) {
