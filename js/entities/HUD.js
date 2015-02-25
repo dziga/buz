@@ -33,9 +33,7 @@ game.HUD.Container = me.Container.extend({
  * a basic HUD item to display score
  */
 game.HUD.ScoreItem = me.Renderable.extend({
-    /**
-     * constructor
-     */
+
     init: function(x, y) {
 
         // call the parent constructor
@@ -48,12 +46,7 @@ game.HUD.ScoreItem = me.Renderable.extend({
         this.font = new me.BitmapFont("32x32_font", 32);
     },
 
-    /**
-     * update function
-     */
     update : function () {
-        // we don't do anything fancy here, so just
-        // return true if the score has been updated
         if (this.arithmetic.score !== game.data.arithmetic.score) {
             this.arithmetic.score = game.data.arithmetic.score;
             return true;
