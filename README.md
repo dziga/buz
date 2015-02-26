@@ -1,8 +1,6 @@
 Buzz - game for kids
 -------------------------------------------------------------------------------
 
-Running instance https://buz.5apps.com/
-
 ## Android version
 
 Coming soon
@@ -12,7 +10,7 @@ Coming soon
 Coming soon (running with firefox)
 
 
-## Run on server
+## To run on server
 
 To build, be sure you have [node](http://nodejs.org) installed. Clone the project:
 
@@ -38,7 +36,7 @@ Note that you may have to edit the file `Gruntfile.js` if you need to better dic
 
 ## Contribute
 
-Feel free to create a pull request.
+Feel free to make pull request.
 
 -------------------------------------------------------------------------------
 Powered by melonJS. 
