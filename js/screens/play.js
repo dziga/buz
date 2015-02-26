@@ -17,6 +17,12 @@ game.PlayScreen = me.ScreenObject.extend({
           if (action === "pause") {
               me.state.isPaused()? me.state.resume(true) : me.state.pause(true);
           }
+          if (action === "mute") {
+            me.audio.muteAll();
+          }
+          else if (action === "unmute") {
+            me.audio.unmuteAll();
+          }
         });
     },
 

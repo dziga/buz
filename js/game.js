@@ -52,6 +52,8 @@ var game = {
         me.input.bindKey(me.input.KEY.LEFT,  "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.SPACE, "pause");
+        me.input.bindKey(me.input.KEY.M, "mute");
+        me.input.bindKey(me.input.KEY.N, "unmute");
         me.input.bindKey(me.input.KEY.U, "click", true, true);
         me.input.bindPointer(me.input.KEY.U);
         // Start the game.
