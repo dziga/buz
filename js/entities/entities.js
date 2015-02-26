@@ -92,7 +92,7 @@ update : function (dt) {
       this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
   }
   this.body.update(dt);
-  return this._super(me.Entity, 'update', [dt]) || this.body.vel.y !==0;
+  return this._super(me.Entity, 'update', [dt]);
 },
 
 draw: function (renderer) {
