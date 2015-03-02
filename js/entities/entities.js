@@ -6,7 +6,7 @@
         this._super(me.Entity, 'init', [x, y , settings]);
 
         // set the default horizontal & vertical speed (accel vector)
-        this.body.setVelocity(3, 0);
+        this.body.setVelocity(8, 0);
 
         // ensure the player is updated even when outside of the viewport
         this.alwaysUpdate = true;
@@ -52,7 +52,7 @@
               this.renderable.flipX(false);
               this.body.vel.x += this.body.accel.x * me.timer.tick;
           }
-        } else if ((this.pos.mouse - this.pos.x) > -2 && 2 > (this.pos.mouse - this.pos.x)) {
+        } else if ((this.pos.mouse - this.pos.x) > -5 && 5 > (this.pos.mouse - this.pos.x)) {
             this.body.vel.x = 0;
             this.pos.mouse = -1;
         } else if (this.pos.mouse == -1) {
@@ -78,7 +78,7 @@ game.HiveEntity = me.CollectableEntity.extend({
 
     this.renderable.addAnimation("spin",  [0, 1, 2, 3, 4, 5, 6, 7]);
     this.renderable.setCurrentAnimation("spin");
-    this.body.setVelocity(1, 1);
+    this.body.setVelocity(0, 3);
     this.alwaysUpdate = true;
     this.arithmetic = [];
     this.arithmetic.value = (1).random(11);
