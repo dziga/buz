@@ -96,7 +96,7 @@ update : function (dt) {
 },
 
 draw: function (renderer) {
-    this.font.draw(renderer, this.arithmetic.value, this.pos.x, this.pos.y - this.height);
+    this.font.draw(renderer, this.arithmetic.value, this.pos.x, this.pos.y - this.height-10);
     this._super(me.Entity, 'draw', [renderer]);
 },
 
