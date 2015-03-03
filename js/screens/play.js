@@ -13,6 +13,10 @@ game.PlayScreen = me.ScreenObject.extend({
         this.HUD = new game.HUD.Container();
         me.game.world.addChild(this.HUD);
 
+        me.game.world.addChild(new Pause(me.game.world.width - 100, 20));
+        me.game.world.addChild(new Speaker(me.game.world.width - 100, 120));
+
+
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
           if (action === "pause") {
               me.state.isPaused()? me.state.resume(true) : me.state.pause(true);

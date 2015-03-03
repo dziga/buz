@@ -62,3 +62,49 @@ game.HUD.ScoreItem = me.Renderable.extend({
     }
 
 });
+
+var Pause = me.GUI_Object.extend({
+  init:function (x, y) {
+    var settings = {}
+    settings.image = "pause";
+    settings.spritewidth = 80;
+    settings.spriteheight = 80;
+    // super constructor
+    this._super(me.GUI_Object, "init", [x, y, settings]);
+    // define the object z order
+    this.z = 4;
+  },
+
+  onClick:function (event) {
+    me.state.isPaused()? me.state.resume(true) : me.state.pause(true);
+    return false;
+  }
+});
+
+var Speaker = me.GUI_Object.extend({
+  init:function (x, y) {
+    var settings = {}
+    settings.image = "speaker";
+    settings.spritewidth = 80;
+    settings.spriteheight = 80;
+    // super constructor
+    this._super(me.GUI_Object, "init", [x, y, settings]);
+    // define the object z order
+    this.z = 4;
+    this.muted = false;
+  },
+
+  onClick:function (event) {
+    if (!this.muted) {
+      me.audio.muteAll();
+      this.muted = true;
+      this.image = me.loader.getImage("speaker");
+    }
+    else {
+      me.audio.unmuteAll();
+      this.muted = false;
+      this.image = me.loader.getImage("speaker");
+    }
+    return false;
+  }
+});
