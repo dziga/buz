@@ -122,7 +122,7 @@ onCollision : function (response, other) {
           game.data.arithmetic.order = "operation";
         break;
         case "operation":
-          if (this.arithmetic.value == "+" || this.arithmetic.value == "-") {
+          if (this.isAlowedOperation(this.arithmetic.value)) {
             me.audio.play("blob");
             game.data.arithmetic.operation = this.arithmetic.value;
             game.data.arithmetic.score += game.data.arithmetic.operation;
@@ -133,19 +133,14 @@ onCollision : function (response, other) {
           }
         break;
         case "second":
-          if (this.arithmetic.value != "+" && this.arithmetic.value != "-") {
+          if (!this.isAlowedOperation(this.arithmetic.value)) {
             me.audio.play("blob");
             game.data.arithmetic.secondNumber = this.arithmetic.value;
             game.data.arithmetic.order = "result";
             game.data.arithmetic.score += game.data.arithmetic.secondNumber + "=";
 
-            game.data.arithmetic.expectedResult = applyOperation[game.data.arithmetic.operation](game.data.arithmetic.firstNumber, game.data.arithmetic.secondNumber);
-            // if (game.data.arithmetic.operation == "+") {
-            //     game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
-            // }
-            // else {
-            //     game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber - game.data.arithmetic.secondNumber;
-            // }
+            game.data.arithmetic.expectedResult = applyOperation[game.data.arithmetic.operation](
+              game.data.arithmetic.firstNumber, game.data.arithmetic.secondNumber);
           }
           else {
             me.audio.play("woosh");
@@ -173,6 +168,10 @@ onCollision : function (response, other) {
 
 hiveRestartPositionY: function() {
     return (-20).random(-100);
+},
+
+isAlowedOperation: function(operation) {
+  return game.data.arithmetic.allowed.indexOf(operation) != -1;
 },
 
 getArithmeticValue: function(order, expectedResult) {

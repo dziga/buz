@@ -7,12 +7,12 @@ var game = {
         speed : 1,
         hint : true,
         arithmetic : {
+            allowed : ["+","-"],
             order : "first",
             expectedResult : -1,
             score : 0
         }
     },
-
 
     // Run on page load.
     "onload" : function () {
@@ -50,7 +50,7 @@ var game = {
         // add our player entity in the entity pool
         me.pool.register("majaPlayer", game.PlayerEntity);
         me.pool.register("HiveEntity", game.HiveEntity);
-        
+
         me.input.bindKey(me.input.KEY.LEFT,  "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.SPACE, "pause");
