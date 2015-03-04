@@ -93,6 +93,15 @@ update : function (dt) {
       this.pos.y = this.hiveRestartPositionY();
       this.arithmetic.value = this.getArithmeticValue(game.data.arithmetic.order, game.data.arithmetic.expectedResult);
   }
+
+  // change color of hive
+  if (game.data.hint && this.arithmetic.value === game.data.arithmetic.expectedResult) {
+    this.renderable.image = me.loader.getImage("hive-hint");
+  }
+  else {
+    this.renderable.image = me.loader.getImage("hive");
+  }
+
   this.body.update(dt);
   return this._super(me.Entity, 'update', [dt]) || this.body.vel.y !==0;
 },
@@ -144,6 +153,7 @@ onCollision : function (response, other) {
             game.data.arithmetic.result = this.arithmetic.value;
             if (game.data.arithmetic.result == game.data.arithmetic.expectedResult) {
               me.audio.play("applause");
+              game.data.arithmetic.expectedResult = -1;
             }
             else {
               me.audio.play("fail");
@@ -182,4 +192,5 @@ getArithmeticValue: function(order, expectedResult) {
     }
     return (1).random(20);
 }
+
 });

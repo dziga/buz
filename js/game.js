@@ -5,6 +5,7 @@ var game = {
     // an object where to store game information
     data : {
         speed : 1,
+        hint : true,
         arithmetic : {
             order : "first",
             expectedResult : -1,
@@ -49,7 +50,7 @@ var game = {
         // add our player entity in the entity pool
         me.pool.register("majaPlayer", game.PlayerEntity);
         me.pool.register("HiveEntity", game.HiveEntity);
-
+        
         me.input.bindKey(me.input.KEY.LEFT,  "left");
         me.input.bindKey(me.input.KEY.RIGHT, "right");
         me.input.bindKey(me.input.KEY.SPACE, "pause");
@@ -57,6 +58,7 @@ var game = {
         me.input.bindKey(me.input.KEY.N, "unmute");
         me.input.bindKey(me.input.KEY.UP, "speed-up");
         me.input.bindKey(me.input.KEY.DOWN, "speed-down");
+        me.input.bindKey(me.input.KEY.B, "hint");
         me.input.bindKey(me.input.KEY.U, "click", true, true);
         me.input.bindPointer(me.input.KEY.U);
         // Start the game.

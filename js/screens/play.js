@@ -17,6 +17,7 @@ game.PlayScreen = me.ScreenObject.extend({
         me.game.world.addChild(new Speaker(me.game.world.width - 100, 120));
         me.game.world.addChild(new SpeedUp(me.game.world.width - 100, 220));
         me.game.world.addChild(new SpeedDown(me.game.world.width - 100, 320));
+        me.game.world.addChild(new Hint(me.game.world.width - 100, 420));
 
 
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
@@ -36,6 +37,14 @@ game.PlayScreen = me.ScreenObject.extend({
           else if (action === "speed-down") {
             if (game.data.speed > 1)
               game.data.speed --;
+          }
+          if (action === "hint") {
+            if (game.data.hint) {
+              game.data.hint = false;
+            }
+            else {
+              game.data.hint = true;
+            }
           }
         });
     },

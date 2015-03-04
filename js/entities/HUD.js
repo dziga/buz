@@ -146,3 +146,26 @@ var SpeedDown = me.GUI_Object.extend({
     return false;
   }
 });
+
+var Hint = me.GUI_Object.extend({
+  init:function (x, y) {
+    var settings = {}
+    settings.image = "hint";
+    settings.spritewidth = 80;
+    settings.spriteheight = 80;
+    // super constructor
+    this._super(me.GUI_Object, "init", [x, y, settings]);
+    // define the object z order
+    this.z = 4;
+  },
+
+  onClick:function (event) {
+    if (game.data.hint) {
+      game.data.hint = false;
+    }
+    else {
+      game.data.hint = true;
+    }
+    return false;
+  }
+});
