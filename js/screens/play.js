@@ -15,11 +15,13 @@ game.PlayScreen = me.ScreenObject.extend({
 
         me.game.world.addChild(new Pause(me.game.world.width - 100, 20));
         me.game.world.addChild(new Speaker(me.game.world.width - 100, 120));
-        me.game.world.addChild(new SpeedUp(me.game.world.width - 100, 220));
-        me.game.world.addChild(new SpeedDown(me.game.world.width - 100, 320));
-        me.game.world.addChild(new Hint(me.game.world.width - 100, 420));
-        me.game.world.addChild(new Plus(me.game.world.width - 100, 520));
-        me.game.world.addChild(new Minus(me.game.world.width - 100, 620));
+        me.game.world.addChild(new SpeedUp(me.game.world.width - 85, 220));
+        me.game.world.addChild(new SpeedDown(me.game.world.width - 170, 220));
+        me.game.world.addChild(new Hint(me.game.world.width - 100, 320));
+        me.game.world.addChild(new Plus(me.game.world.width - 100, 420));
+        me.game.world.addChild(new Minus(me.game.world.width - 100, 520));
+        me.game.world.addChild(new Multiply(me.game.world.width - 100, 620));
+        me.game.world.addChild(new Divide(me.game.world.width - 100, 720));
 
 
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {

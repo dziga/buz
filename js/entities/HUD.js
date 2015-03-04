@@ -205,3 +205,39 @@ var Minus = me.GUI_Object.extend({
     return false;
   }
 });
+
+var Multiply = me.GUI_Object.extend({
+  init:function (x, y) {
+    var settings = {}
+    settings.image = "multiply";
+    settings.spritewidth = 80;
+    settings.spriteheight = 80;
+    // super constructor
+    this._super(me.GUI_Object, "init", [x, y, settings]);
+    // define the object z order
+    this.z = 4;
+  },
+
+  onClick:function (event) {
+    game.toggleOperation("*");
+    return false;
+  }
+});
+
+var Divide = me.GUI_Object.extend({
+  init:function (x, y) {
+    var settings = {}
+    settings.image = "divide";
+    settings.spritewidth = 80;
+    settings.spriteheight = 80;
+    // super constructor
+    this._super(me.GUI_Object, "init", [x, y, settings]);
+    // define the object z order
+    this.z = 4;
+  },
+
+  onClick:function (event) {
+    game.toggleOperation("/");
+    return false;
+  }
+});
