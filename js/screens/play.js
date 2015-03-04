@@ -23,44 +23,45 @@ game.PlayScreen = me.ScreenObject.extend({
 
 
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
-          if (action === "pause") {
+          switch(action) {
+            case "pause":
               me.state.isPaused()? me.state.resume(true) : me.state.pause(true);
+              break;
+            case "mute":
+              me.audio.muteAll();
+              break;
+            case "unmute":
+              me.audio.unmuteAll();
+              break;
+            case "speed-up":
+              if (game.data.speed < 100)
+                game.data.speed ++;
+              break;
+            case "speed-down":
+              if (game.data.speed > 1)
+                game.data.speed --;
+              break;
+            case "hint":
+              if (game.data.hint) {
+                game.data.hint = false;
+              }
+              else {
+                game.data.hint = true;
+              }
+              break;
+            case "add":
+              game.toggleOperation("+");
+              break;
+            case "sub":
+              game.toggleOperation("-");
+              break;
+            case "mul":
+              game.toggleOperation("*");
+              break;
+            case "div":
+              game.toggleOperation("/");
+              break;
           }
-          if (action === "mute") {
-            me.audio.muteAll();
-          }
-          else if (action === "unmute") {
-            me.audio.unmuteAll();
-          }
-          if (action === "speed-up") {
-            if (game.data.speed < 100)
-              game.data.speed ++;
-          }
-          else if (action === "speed-down") {
-            if (game.data.speed > 1)
-              game.data.speed --;
-          }
-          if (action === "hint") {
-            if (game.data.hint) {
-              game.data.hint = false;
-            }
-            else {
-              game.data.hint = true;
-            }
-          }
-          if (action === "add") {
-            game.toggleOperation("+");
-          }
-          if (action === "sub") {
-            game.toggleOperation("-");
-          }
-          if (action === "mul") {
-            game.toggleOperation("*");
-          }
-          if (action === "div") {
-            game.toggleOperation("/");
-          }
-
         });
     },
 
