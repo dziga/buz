@@ -177,6 +177,14 @@ getArithmeticValue: function(order, expectedResult) {
     else if (order == "second" && game.data.arithmetic.operation == "-") {
         return (1).random(game.data.arithmetic.firstNumber);
     }
+    else if (order == "second" && game.data.arithmetic.operation == "/") {
+        var divisibleNums = [];
+        for (i = 0; i < game.data.arithmetic.firstNumber; i++) {
+          if (game.data.arithmetic.firstNumber % i === 0 || i === 1)
+            divisibleNums.push(i);
+        }
+        return divisibleNums[(0).random(divisibleNums.length)];
+    }
     else if (order == "result") {
         if (((1).random(4) % 3) == 0 ) {
             return game.data.arithmetic.expectedResult;
