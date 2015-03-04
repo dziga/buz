@@ -18,6 +18,8 @@ game.PlayScreen = me.ScreenObject.extend({
         me.game.world.addChild(new SpeedUp(me.game.world.width - 100, 220));
         me.game.world.addChild(new SpeedDown(me.game.world.width - 100, 320));
         me.game.world.addChild(new Hint(me.game.world.width - 100, 420));
+        me.game.world.addChild(new Plus(me.game.world.width - 100, 520));
+        me.game.world.addChild(new Minus(me.game.world.width - 100, 620));
 
 
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
@@ -46,9 +48,19 @@ game.PlayScreen = me.ScreenObject.extend({
               game.data.hint = true;
             }
           }
-          // if (action === "add") {
-          //   if (game.data.arithmethic.allowed.lenght > 1)
-          // }
+          if (action === "add") {
+            game.toggleOperation("+");
+          }
+          if (action === "sub") {
+            game.toggleOperation("-");
+          }
+          if (action === "mul") {
+            game.toggleOperation("*");
+          }
+          if (action === "div") {
+            game.toggleOperation("/");
+          }
+
         });
     },
 
