@@ -14,6 +14,10 @@ var game = {
         }
     },
 
+    isAllowedOperation: function(operation) {
+      return this.data.arithmetic.allowed.indexOf(operation) != -1;
+    },
+
     // Run on page load.
     "onload" : function () {
     // Initialize the video.
@@ -59,10 +63,10 @@ var game = {
         me.input.bindKey(me.input.KEY.UP, "speed-up");
         me.input.bindKey(me.input.KEY.DOWN, "speed-down");
         me.input.bindKey(me.input.KEY.B, "hint");
-        me.input.bindKey(me.input.KEY.1, "add");
-        me.input.bindKey(me.input.KEY.2, "sub");
-        me.input.bindKey(me.input.KEY.3, "mul");
-        me.input.bindKey(me.input.KEY.4, "div");
+        // me.input.bindKey(me.input.KEY.1, "add");
+        // me.input.bindKey(me.input.KEY.2, "sub");
+        // me.input.bindKey(me.input.KEY.3, "mul");
+        // me.input.bindKey(me.input.KEY.4, "div");
         me.input.bindKey(me.input.KEY.U, "click", true, true);
         me.input.bindPointer(me.input.KEY.U);
         // Start the game.

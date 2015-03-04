@@ -122,7 +122,7 @@ onCollision : function (response, other) {
           game.data.arithmetic.order = "operation";
         break;
         case "operation":
-          if (this.isAlowedOperation(this.arithmetic.value)) {
+          if (game.isAllowedOperation(this.arithmetic.value)) {
             me.audio.play("blob");
             game.data.arithmetic.operation = this.arithmetic.value;
             game.data.arithmetic.score += game.data.arithmetic.operation;
@@ -133,7 +133,7 @@ onCollision : function (response, other) {
           }
         break;
         case "second":
-          if (!this.isAlowedOperation(this.arithmetic.value)) {
+          if (!game.isAllowedOperation(this.arithmetic.value)) {
             me.audio.play("blob");
             game.data.arithmetic.secondNumber = this.arithmetic.value;
             game.data.arithmetic.order = "result";
@@ -168,10 +168,6 @@ onCollision : function (response, other) {
 
 hiveRestartPositionY: function() {
     return (-20).random(-100);
-},
-
-isAlowedOperation: function(operation) {
-  return game.data.arithmetic.allowed.indexOf(operation) != -1;
 },
 
 getArithmeticValue: function(order, expectedResult) {

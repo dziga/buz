@@ -46,6 +46,9 @@ game.PlayScreen = me.ScreenObject.extend({
               game.data.hint = true;
             }
           }
+          // if (action === "add") {
+          //   if (game.data.arithmethic.allowed.lenght > 1)
+          // }
         });
     },
 
