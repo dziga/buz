@@ -6,7 +6,7 @@
         this._super(me.Entity, 'init', [x, y , settings]);
 
         // set the default horizontal & vertical speed (accel vector)
-        this.body.setVelocity(8, 0);
+        this.body.setVelocity(9, 0);
 
         // ensure the player is updated even when outside of the viewport
         this.alwaysUpdate = true;
@@ -27,6 +27,7 @@
     },
 
      update : function (dt) {
+        this.body.setVelocity(game.data.speed * 3, 0);
         if (me.input.isKeyPressed('left')) {
           this.renderable.flipX(true);
           // update the entity velocity
@@ -86,6 +87,7 @@ game.HiveEntity = me.CollectableEntity.extend({
 },
 
 update : function (dt) {
+  this.body.setVelocity(0, game.data.speed);
   this.body.vel.y += this.body.accel.y * me.timer.tick;
   if (this.pos.y > me.game.world.height) {
       this.pos.y = this.hiveRestartPositionY();

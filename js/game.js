@@ -4,6 +4,7 @@ var game = {
 
     // an object where to store game information
     data : {
+        speed : 1,
         arithmetic : {
             order : "first",
             expectedResult : -1,
@@ -54,6 +55,8 @@ var game = {
         me.input.bindKey(me.input.KEY.SPACE, "pause");
         me.input.bindKey(me.input.KEY.M, "mute");
         me.input.bindKey(me.input.KEY.N, "unmute");
+        me.input.bindKey(me.input.KEY.UP, "speed-up");
+        me.input.bindKey(me.input.KEY.DOWN, "speed-down");
         me.input.bindKey(me.input.KEY.U, "click", true, true);
         me.input.bindPointer(me.input.KEY.U);
         // Start the game.

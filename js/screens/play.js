@@ -15,6 +15,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
         me.game.world.addChild(new Pause(me.game.world.width - 100, 20));
         me.game.world.addChild(new Speaker(me.game.world.width - 100, 120));
+        me.game.world.addChild(new SpeedUp(me.game.world.width - 100, 220));
+        me.game.world.addChild(new SpeedDown(me.game.world.width - 100, 320));
 
 
         this.handler = me.event.subscribe(me.event.KEYDOWN, function (action, keyCode, edge) {
@@ -26,6 +28,14 @@ game.PlayScreen = me.ScreenObject.extend({
           }
           else if (action === "unmute") {
             me.audio.unmuteAll();
+          }
+          if (action === "speed-up") {
+            if (game.data.speed < 100)
+              game.data.speed ++;
+          }
+          else if (action === "speed-down") {
+            if (game.data.speed > 1)
+              game.data.speed --;
           }
         });
     },
