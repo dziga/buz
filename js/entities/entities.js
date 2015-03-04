@@ -176,11 +176,12 @@ isAlowedOperation: function(operation) {
 
 getArithmeticValue: function(order, expectedResult) {
     if (order == "operation") {
-        if (((2).random(4) % 2) == 0) {
-            return "+";
-        } else {
-            return "-";
-        }
+      return game.data.arithmetic.allowed[(0).random(game.data.arithmetic.allowed.length)];
+        // if (((2).random(4) % 2) == 0) {
+        //     return "+";
+        // } else {
+        //     return "-";
+        // }
     }
     else if (order == "second" && game.data.arithmetic.operation == "-") {
         return (1).random(game.data.arithmetic.firstNumber);
