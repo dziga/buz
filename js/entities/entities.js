@@ -138,12 +138,14 @@ onCollision : function (response, other) {
             game.data.arithmetic.secondNumber = this.arithmetic.value;
             game.data.arithmetic.order = "result";
             game.data.arithmetic.score += game.data.arithmetic.secondNumber + "=";
-            if (game.data.arithmetic.operation == "+") {
-                game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
-            }
-            else {
-                game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber - game.data.arithmetic.secondNumber;
-            }
+
+            game.data.arithmetic.expectedResult = applyOperation[game.data.arithmetic.operation](game.data.arithmetic.firstNumber, game.data.arithmetic.secondNumber);
+            // if (game.data.arithmetic.operation == "+") {
+            //     game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber + game.data.arithmetic.secondNumber;
+            // }
+            // else {
+            //     game.data.arithmetic.expectedResult = game.data.arithmetic.firstNumber - game.data.arithmetic.secondNumber;
+            // }
           }
           else {
             me.audio.play("woosh");
@@ -192,5 +194,11 @@ getArithmeticValue: function(order, expectedResult) {
     }
     return (1).random(20);
 }
-
 });
+
+var applyOperation = {
+    '+': function (x, y) { return x + y },
+    '-': function (x, y) { return x - y },
+    '*': function (x, y) { return x * y },
+    '/': function (x, y) { return x / y }
+};
