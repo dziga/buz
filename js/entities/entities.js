@@ -53,7 +53,7 @@
               this.renderable.flipX(false);
               this.body.vel.x += this.body.accel.x * me.timer.tick;
           }
-        } else if ((this.pos.mouse - this.pos.x) > -5 && 5 > (this.pos.mouse - this.pos.x)) {
+        } else if ((this.pos.mouse - this.pos.x) > -5 * game.data.speed && 5 * game.data.speed > (this.pos.mouse - this.pos.x)) {
             this.body.vel.x = 0;
             this.pos.mouse = -1;
         } else if (this.pos.mouse == -1) {
