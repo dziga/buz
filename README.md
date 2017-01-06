@@ -1,16 +1,11 @@
 Buzz - game for kids
 -------------------------------------------------------------------------------
 
-Running instance https://buz.5apps.com/
+Running instances dziga.github.io/buz & https://buz.5apps.com/
 
 ## Android version
 
 Coming soon
-
-## Desktop version
-
-Coming soon (running with firefox)
-
 
 ## Run on server
 
